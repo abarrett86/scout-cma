@@ -1,0 +1,60 @@
+.scout_cma_widget{
+  background-color: grey;
+  padding: 45px;
+}
+
+.scout_cma_label{
+  color: white;
+  font-weight: normal;
+  font-size: .9em;
+}
+
+.scout_cma_widget input{
+  border-radius: 15px;
+}
+
+.scout_cma_line{
+  
+}
+
+.scout_cma_widget button{
+  width: 100%;
+}
+
+
+/* Layout */
+.scout_cma_widget .col-sm-6.leftHalf{
+  padding: 0px;
+  padding-right: 10px;
+}
+.scout_cma_widget .col-sm-6.rightHalf{
+  padding: 0px;
+  padding-left: 10px;
+}
+
+
+/* Validation */
+.scout_cma_note
+{
+  color: red;
+  display: none;
+}
+
+.input_invalid .scout_cma_note
+{
+  display: inline-block;
+}
+
+.cma_submit_button{
+  cursor:pointer;
+}
+
+.cma_submit_button[disabled]{
+  background-color: #767676;
+}
+
+
+.cma_success_message,
+.cma_fail_message{
+  display:none;
+}

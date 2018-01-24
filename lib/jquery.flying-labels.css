@@ -1,0 +1,42 @@
+.it-wrapper{
+    display: inline-block;
+    position: relative;
+}
+.it-wrapper .placeholder{
+    position: absolute;
+    top: -3px;
+    font-size: 11px;
+    color: #889;
+    z-index: 5;
+    font-weight: bold;
+    display: none;
+    background: #fafafa;
+    padding: 0 5px;
+    line-height: 1em;
+}
+input:focus~.placeholder, textarea:focus~.placeholder{
+    color: #2189FE;
+    transition: all .2s;
+}
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
