@@ -3,7 +3,7 @@
  * Plugin Name: CMA Form
  * Plugin URI: https://github.com/abarrett86
  * Description: 
- * Version: 0.0.2
+ * Version: 0.1.0
  * Author: Alex Barrett
  * Author URI: https://github.com/abarrett86
  * License: GPL2
