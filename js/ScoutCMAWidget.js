@@ -21,24 +21,19 @@ function ScoutCMAWidget ($root){
     this.stateInput = jQuery(this.$root).find('.cma_input_state');
     this.zipInput = jQuery(this.$root).find('.cma_input_zip');
     this.sqftInput = jQuery(this.$root).find('.cma_input_sqft');
-    this.successMessage = jQuery(this.$root).find('.cma_success_message');
-    this.failMessage = jQuery(this.$root).find('.cma_fail_message');
+    this.message = jQuery(this.$root).find('.cma_message');
     
     this.submitButton = jQuery(this.$root).find('.cma_submit_button');
+
+    jQuery(this.submitButton).html(cma_options.submit_text);
 
     jQuery(this.submitButton).click(function(){
         self.send();
     })
 
-    //set success and failure message from wordpress options
-    jQuery(this.successMessage).html(cma_options.cma_success_message_key);
-    jQuery(this.failMessage).html(cma_options.cma_fail_message_key);
-
     this.updateValues();
 
 }
-
-
 
 ScoutCMAWidget.prototype.checkSubmitReady = function(){
     
@@ -143,46 +138,37 @@ ScoutCMAWidget.prototype.checkValueNumeric = function(value){
     return !isNaN(value) && value != '';
 }
 
-ScoutCMAWidget.prototype.onSubmitSuccess = function(){
-    //show thank-you message
-    jQuery(this.failMessage).hide();
-    jQuery(this.submitButton).hide();
-    jQuery(this.successMessage).show();
-
-}
-
-ScoutCMAWidget.prototype.onSubmitFail = function(){
-    
-    //show failure message
-    jQuery(this.failMessage).show();
-    jQuery(this.successMessage).hide();
-
-    //re-enable button
-    jQuery(this.submitButton).prop('disabled', false);
-}
-
 ScoutCMAWidget.prototype.send = function(){
     
+    var self = this;
+
     jQuery(this.submitButton).prop('disabled', true);
 
     var url = "http://cloudcma.com/cmas/widget";
 
     var data = {
-        api_key : cma_options.cma_api_key,
+        action: 'cma_form',
         email_to: this.emailValue,
         address: this.streetValue + " " + this.cityValue + ", " + this.stateValue + " " + this.zipValue,
         sqft: this.sqftValue,
         name: this.nameValue
     }
 
-    jQuery.ajax({
-        type: "POST",
-        url: url,
-        data: data,
-        success: jQuery.proxy(self, self.onSubmitSuccess),
-        error: jQuery.proxy(self, self.onSubmitFail),
-        fail: jQuery.proxy(self, self.onSubmitFail)
-        });
+	// We can also pass the url value separately from ajaxurl for front end AJAX implementations
+	jQuery.post(cma_options.ajax_url, data, function(response) {
 
-    //TODO: ajax call to our server to store the input form for posterity
+        var json = JSON.parse(response);
+
+        if(json.status == "success"){
+            self.$root.removeClass("cma_failed");
+            self.$root.addClass("cma_success");
+        }else{
+            self.$root.removeClass("cma_success");
+            self.$root.addClass("cma_failed");
+        }
+
+        jQuery(self.message).html(json.message);
+        jQuery(self.submitButton).prop('disabled', json.status == "success");
+
+	});
 }

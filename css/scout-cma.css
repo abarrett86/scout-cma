@@ -1,6 +1,10 @@
 .scout_cma_widget{
   background-color: grey;
-  padding: 45px;
+  padding: 15px;
+font-family: Oswald, Arial, Helvetica, sans-serif;
+font-weight: 300;
+line-height: 1.5;
+
 }
 
 .scout_cma_label{
@@ -14,11 +18,19 @@
 }
 
 .scout_cma_line{
-  
+  margin-top: 8px;
 }
 
 .scout_cma_widget button{
   width: 100%;
+    background-color: #222;
+color: #fff;
+    border: none;
+    padding: 5px;
+    font-size: 1em;
+    font-family: Oswald, Arial, Helvetica, sans-serif;
+font-weight: 300;
+line-height: 1.5;
 }
 
 
@@ -27,9 +39,22 @@
   padding: 0px;
   padding-right: 10px;
 }
+
 .scout_cma_widget .col-sm-6.rightHalf{
   padding: 0px;
   padding-left: 10px;
+  margin-top: 0px;
+}
+
+@media (max-width: 768px){
+  .scout_cma_widget .col-sm-6.leftHalf{
+    padding-right: 0px;
+  }
+
+  .scout_cma_widget .col-sm-6.rightHalf{
+      margin-top: 8px;
+      padding-left: 0px;
+  }
 }
 
 
@@ -45,16 +70,43 @@
   display: inline-block;
 }
 
-.cma_submit_button{
+.scout_cma_widget button.cma_submit_button{
   cursor:pointer;
 }
 
-.cma_submit_button[disabled]{
+.scout_cma_widget button.cma_submit_button[disabled]{
   background-color: #767676;
 }
 
 
-.cma_success_message,
-.cma_fail_message{
-  display:none;
+.cma_success .cma_submit_button{
+  display: none;
+}
+
+.cma_success .cma_message{
+  display: block;
+  background-color: #4c904c;
+  border-color: green;
+}
+
+.cma_failed .cma_message{
+  display: block;
+  background-color: lightcoral;
+  border-color: red;
+}
+
+
+.cma_message {
+  width: 100%;
+  display: none;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.cma_message{
+  color: white;
+  padding: 5px;
+  font-size: .8em;
+  text-align: center;
 }
