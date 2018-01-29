@@ -6,7 +6,6 @@
  * Version: 0.1.0
  * Author: Alex Barrett
  * Author URI: https://github.com/abarrett86
- * License: GPL2
  */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
