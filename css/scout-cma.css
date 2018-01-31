@@ -65,6 +65,10 @@ line-height: 1.5;
   display: none;
 }
 
+.scout_cma_note_master .scout_cma_note{
+  display: inline-block;
+}
+
 .input_invalid .scout_cma_note
 {
   display: inline-block;

@@ -22,6 +22,7 @@ function ScoutCMAWidget ($root){
     this.zipInput = jQuery(this.$root).find('.cma_input_zip');
     this.sqftInput = jQuery(this.$root).find('.cma_input_sqft');
     this.message = jQuery(this.$root).find('.cma_message');
+    this.requiredNoteMaster = jQuery(this.$root).find('.scout_cma_note_master');
     
     this.submitButton = jQuery(this.$root).find('.cma_submit_button');
 
@@ -40,7 +41,7 @@ ScoutCMAWidget.prototype.checkSubmitReady = function(){
     var valid = true;
 
     //name
-    if(this.nameValue.length < 3){
+    if(this.nameValue.length < 1){
         valid = false;
         jQuery(this.nameInput).parent().addClass(this.invalidInputClass);
     }else{
@@ -56,7 +57,7 @@ ScoutCMAWidget.prototype.checkSubmitReady = function(){
     }
 
     //street
-    if(this.streetValue.length < 3){
+    if(this.streetValue.length < 1){
         valid = false;
         jQuery(this.streetInput).parent().addClass(this.invalidInputClass);
     }else{
@@ -64,7 +65,7 @@ ScoutCMAWidget.prototype.checkSubmitReady = function(){
     }
 
     //city
-    if(this.cityValue.length < 2){
+    if(this.cityValue.length < 1){
         valid = false;
         jQuery(this.cityInput).parent().addClass(this.invalidInputClass);
     }else{
@@ -96,6 +97,8 @@ ScoutCMAWidget.prototype.checkSubmitReady = function(){
     }
 
     jQuery(this.submitButton).prop('disabled', !valid);
+    jQuery(this.requiredNoteMaster).toggle(!valid);
+
 
 }
 
